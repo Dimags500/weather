@@ -1,0 +1,9 @@
+
+
+<div class="main">
+    <div *ngIf="!isLoading">
+        the temperature in {{weather.timezone}} timezone now is {{weather.current.temp}} &#8451; or {{weather.current.temp| CelsiusToFahrenheit}}  &#8457;;
+    </div>
+    
+    <ng-container *ngIf="isLoading"> Data is Loading ....</ng-container>
+</div>

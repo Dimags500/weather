@@ -1,4 +1,8 @@
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,28 +13,28 @@ import { AuthService } from './core/services/auth.service';
 import { WeatherService } from './core/services/weather.service';
 import { PersistanceService } from './core/services/persistent.service';
 import { WeatherModule } from './weather/weather.module';
-import { WeatherPipe } from './core/pipes/weather.pipe';
-import { GlobalHttpInterceptorServiceInterceptor } from './core/interceptors/global-http-interceptor-service.interceptor';
+import { GlobalHttpErrorsInterceptor } from './core/interceptors/globalHttpErrors.interceptor';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        WeatherPipe,
-    ],
-    providers: [AuthService , WeatherService ,PersistanceService ,   
-         {
-        provide: HTTP_INTERCEPTORS,
-        useClass: GlobalHttpInterceptorServiceInterceptor,
-        multi: true,
-      },],
-    bootstrap: [AppComponent],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        AuthModule,
-        WeatherModule ,
-        HttpClientModule , 
-    ],
-    exports: []
+  declarations: [AppComponent],
+  providers: [
+    AuthService,
+    WeatherService,
+    PersistanceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: GlobalHttpErrorsInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AuthModule,
+    WeatherModule,
+    HttpClientModule,
+  ],
+  exports: [],
 })
-export class AppModule { }
+export class AppModule {}
