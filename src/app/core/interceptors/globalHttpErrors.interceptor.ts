@@ -9,7 +9,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable()
-export class GlobalHttpInterceptorServiceInterceptor implements HttpInterceptor {
+export class GlobalHttpErrorsInterceptor implements HttpInterceptor {
 
   constructor(public router: Router) {
   }
