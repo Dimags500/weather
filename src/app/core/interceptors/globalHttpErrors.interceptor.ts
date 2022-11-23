@@ -18,7 +18,7 @@ export class GlobalHttpErrorsInterceptor implements HttpInterceptor {
  
     return next.handle(req).pipe(
       catchError((error) => {
-        alert('error')
+        alert('error check in console')
         console.error(error);
         return throwError(error.message);
       })

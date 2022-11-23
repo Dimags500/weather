@@ -20,19 +20,14 @@ export class AuthService {
     return this.http.post<AuthResponseInterface>(this.url + 'login', data).pipe(
         
       map((data) => {
-       // localStorage.setItem('currentUser', JSON.stringify(data.user));
         this.persistanceService.set('currentUser', data.user);
-
         this.router.navigate(['/weather']);
       })
     )
   }
 
   logout() {
-    // remove user from local storage to log user out
-   // localStorage.removeItem('currentUser');
     this.persistanceService.remove('currentUser');
-
     this.router.navigate(['/login']);
   }
 }
